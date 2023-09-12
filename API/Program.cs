@@ -1,3 +1,4 @@
+using API.Controllers.Middlewares;
 using API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.ApplicationServices(builder.Configuration, builder.Environment);
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
